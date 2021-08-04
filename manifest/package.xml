@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<types>
+		<members>ChatSurveyController</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>ChatSurveyForm</members>
+		<name>ApexPage</name>
+	</types>
+	<types>
+		<members>Survey__c</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>CustomSite</name>
+	</types>
+	<types>
+		<members>Chat_Agents</members>
+		<name>EmbeddedServiceConfig</name>
+	</types>
+	<types>
+		<members>preChat</members>
+		<name>LightningComponentBundle</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>LiveChatButton</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>LiveChatDeployment</name>
+	</types>
+	<version>52.0</version>
+</Package>

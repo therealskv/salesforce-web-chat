@@ -1,0 +1,114 @@
+<apex:page showHeader="false" controller="ChatSurveyController">
+    <style>
+        .star-rating fieldset {
+            font-size: 0;
+            white-space: nowrap;
+            display: inline-block;
+            width: 150px;
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+            background: url('data:image/svg+xml;utf-8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><polygon fill="%23DDDDDD" points="10,0 13.09,6.583 20,7.639 15,12.764 16.18,20 10,16.583 3.82,20 5,12.764 0,7.639 6.91,6.583 "/></svg>');
+            background-size: contain;
+        }
+
+        .star-rating input { 
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            opacity: 0;
+            display: inline-block;
+            width: 100%;
+            height: 100%; 
+            margin:0;
+            padding:0;
+            z-index: 2;
+            position: relative;
+        }
+
+        .star-rating input:hover + label,
+        .star-rating input:checked + label {
+            opacity:1;    
+        }
+
+        .star-rating label {
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 20%;
+            z-index: 4;
+            background: 
+                url('data:image/svg+xml;utf-8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"><polygon fill="%23FFDF88" points="10,0 13.09,6.583 20,7.639 15,12.764 16.18,20 10,16.583 3.82,20 5,12.764 0,7.639 6.91,6.583 "/></svg>');
+            background-size: contain;
+        }
+
+        .star-rating td~td label {
+            width: 40%;
+            z-index: 3;  
+        }
+        .star-rating td~td~td label {
+            width: 60%;
+            z-index: 2;
+        }
+        .star-rating td~td~td~td label {
+            z-index: 1;
+            width: 80%;
+        }
+        .star-rating td~td~td~td~td label {
+            z-index: 0;
+            width: 100%;
+        }
+
+        /* .displayMessage {
+            vertical-align: middle;
+            padding: 15px;
+            font-weight: bold;
+            height: 100px;
+            font-size: 13px;
+            display: table-cell;
+            text-align: center;
+        }*/
+
+        .question {
+            font-size: 13px;
+            text-align: center;
+        }
+    </style>
+    <apex:form id="form">
+        <apex:outputPanel id="displayPanels">
+            <apex:outputPanel rendered="{!surveySubmitted}">
+                <div style="text-align:center;font-weight:bold;">
+                    Thanks for taking the survey!
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!!surveySubmitted}">
+                <div style="text-align:center;font-weight:bold;">
+                    Please take a moment to tell us about your chat experience today!
+                </div>
+                <hr/><br/>
+                <apex:outputPanel styleClass="star-rating">
+                    <div class="question">
+                        <apex:outputText value="How would you rate your experience today?" />
+                        <br/>
+                        <apex:selectRadio layout="lineDirection" value="{!rating}">
+                            <apex:actionSupport event="onclick" reRender="form"/>
+                            <apex:selectOption itemValue="1"></apex:selectOption>
+                            <apex:selectOption itemValue="2"></apex:selectOption>
+                            <apex:selectOption itemValue="3"></apex:selectOption>
+                            <apex:selectOption itemValue="4"></apex:selectOption>
+                            <apex:selectOption itemValue="5"></apex:selectOption>
+                        </apex:selectRadio>
+                    </div>
+                </apex:outputPanel>
+                <br/>
+                <div align="center">
+                    <apex:commandButton styleClass="slds-button slds-button_brand" value="Submit" id="btnSubmit" reRender="displayPanels" action="{!save}"/>
+                </div>
+            </apex:outputPanel>
+            
+        </apex:outputPanel>
+
+        
+    </apex:form>
+</apex:page>

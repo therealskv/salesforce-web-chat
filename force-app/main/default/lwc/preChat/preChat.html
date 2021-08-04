@@ -1,0 +1,30 @@
+<template>
+    <div class="chatBox" style="padding-top:15px">
+        <div class="agent">Hello Visitor!</div>
+        <div style="line-height:15px;">&nbsp;</div>
+        <div class="agent">Please enter your details to start chatting with an expert</div>
+    </div>
+
+    <!-- <div class="slds-form-element">
+        <label class="slds-form-element__label" for="text-input-id-1">
+          <abbr class="slds-required" title="required">* </abbr>Input Label</label>
+        <div class="slds-form-element__control">
+          <input type="text" id="text-input-id-1" placeholder="Placeholder text…" required="" class="slds-input" />
+        </div>
+      </div> -->
+
+
+    <div style="padding: 15px;">
+        <lightning-card title="">
+            <div style="padding-left: 15px;padding-right: 15px;">
+                <template class="slds-m-around_medium" for:each={fields} for:item="field">
+                    <div key={field.name}>
+                        <lightning-input key={field.name} name={field.name} label={field.label} value={field.value} max-length={field.maxLength} required={field.required}></lightning-input>
+                    </div>
+                </template>
+            </div>
+        </lightning-card>
+    </div>
+    <lightning-button label={startChatLabel} title={startChatLabel} onclick={handleStartChat} class="slds-m-left_x-small" variant="brand">
+    </lightning-button>
+</template>
